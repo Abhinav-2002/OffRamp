@@ -101,7 +101,7 @@ class AppButtons {
 
   static ButtonStyle ghost = OutlinedButton.styleFrom(
     foregroundColor: AppColors.textSecondary,
-    side: const BorderSide(color: AppColors.cardBorder),
+    side: BorderSide(color: AppColors.cardBorder),
     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 24),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
     textStyle: GoogleFonts.dmSans(fontSize: 15, fontWeight: FontWeight.w600),
@@ -109,7 +109,7 @@ class AppButtons {
 
   static ButtonStyle ghostSmall = OutlinedButton.styleFrom(
     foregroundColor: AppColors.textSecondary,
-    side: const BorderSide(color: AppColors.cardBorder),
+    side: BorderSide(color: AppColors.cardBorder),
     padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 14),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     textStyle: GoogleFonts.dmSans(fontSize: 12, fontWeight: FontWeight.w600),

@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!-- Foreground service for app detection -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Foreground service special use for monitoring -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <!-- Boot completed for WorkManager -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- Vibration for notifications -->
@@ -19,6 +21,14 @@
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <!-- Contacts for human buffer -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- Do Not Disturb for sleep mode -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <!-- Write settings for grayscale -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- Get tasks for app detection on older devices -->
+    <uses-permission android:name="android.permission.GET_TASKS"
+        tools:ignore="Deprecated" />
 
     <application
         android:label="Offramp"
@@ -45,6 +55,27 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <!-- Usage Stats Service for friction overlay -->
+        <service
+            android:name=".UsageStatsService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="specialUse"
+            android:permission="android.permission.FOREGROUND_SERVICE">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="monitoring_distracting_apps" />
+        </service>
+
+        <!-- Friction Overlay Activity -->
+        <activity
+            android:name=".FrictionOverlayActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:launchMode="singleTask"
+            android:excludeFromRecents="true"
+            android:noHistory="true" />
 
         <!-- Home Widget Provider -->
         <receiver

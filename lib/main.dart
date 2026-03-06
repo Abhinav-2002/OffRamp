@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'app.dart';
-import 'models/app_state.dart';
+import 'package:flutter/services.dart';
+import 'app_new.dart';
+
+// ═════════════════════════════════════════════════════════════════════════════
+// MAIN ENTRY POINT - OFFRAMP Digital Wellness App
+// ═════════════════════════════════════════════════════════════════════════════
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
 
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => AppState(),
-      child: const OfframpApp(),
-    ),
-  );
+  // Set preferred orientations
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  // Set system UI overlay style
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.light,
+    systemNavigationBarColor: Color(0xFF1A1F2E),
+    systemNavigationBarIconBrightness: Brightness.light,
+  ));
+
+  runApp(const OfframpApp());
 }
